@@ -2,7 +2,8 @@
   "name": "bell-cms-core",
   "version": "0.0.2",
   "description": "Core API for Bell CMS",
-  "main": "dist",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "tsc-init": "tsc --init",
     "build": "tsc"
