@@ -1,7 +1,7 @@
 import {BellModelInterface} from "./BellModelInterface";
 import {Builder} from "./Builder";
 
-export abstract class BellModel extends Builder implements BellModelInterface {
+export abstract class BellCoreModel extends Builder implements BellModelInterface {
     protected abstract table: string;
 
     protected queryBuilder: string;
