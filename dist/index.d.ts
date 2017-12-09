@@ -1,2 +1,2 @@
-import { BellCoreModel } from "./src/bellmodel";
+import { BellCoreModel } from "./bellmodel";
 export declare const BellModel: typeof BellCoreModel;
