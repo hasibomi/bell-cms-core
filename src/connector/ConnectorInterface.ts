@@ -1,6 +1,6 @@
 export interface ConnectorInterface {
-    host: string;
-    user: string;
-    password: string;
-    database: string;
+    host: string | undefined;
+    user: string | undefined;
+    password: string | undefined;
+    database: string | undefined;
 }
