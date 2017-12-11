@@ -3,26 +3,40 @@ import * as mysql from "mysql";
 import {ConnectorInterface} from "./ConnectorInterface";
 
 export class Connector {
-    constructor(protected credentials?: ConnectorInterface, callback?: any) {
-        if (this.credentials === undefined) {
-            this.credentials = {
-                "host": "127.0.0.1",
-                "user": "root",
-                "password": "",
-                "database": ""
-            };
-        }
+    private credentials: ConnectorInterface;
+    private connection: any;
 
-        const connector = mysql.createConnection(this.credentials);
+    static main = new Connector();
 
-        if (callback === undefined) connector.connect();
-        else connector.connect(callback);
+    /**
+     * Set database credentials.
+     *
+     * @param {ConnectorInterface} credentials
+     * @returns {this}
+     */
+    setCredentials(credentials: ConnectorInterface) {
+        Connector.main.credentials = credentials;
+        return this;
     }
 
-    /*protected connect(credentials: ConnectorInterface, callback?: any) {
-        this.connector = mysql.createConnection(credentials);
+    /**
+     * Connect to the database.
+     *
+     * @param callback
+     */
+    connect(callback?: any): void {
+        Connector.main.connection = mysql.createConnection(Connector.main.credentials);
 
-        if (callback === undefined) this.connector.connect();
-        else this.connector.connect(callback);
-    }*/
+        if (callback === undefined) Connector.main.connection.connect();
+        else Connector.main.connection.connect(callback);
+    }
+
+    /**
+     * Get the connection.
+     *
+     * @returns {any}
+     */
+    protected getConnector() {
+        return Connector.main.connection;
+    }
 }

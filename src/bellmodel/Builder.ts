@@ -1,6 +1,15 @@
-import {db} from "../database";
+// import {db} from "../database";
 
-export class Builder {
+import {Connector} from "../connector";
+
+export class Builder extends Connector {
+    /**
+     * Get the connector.
+     *
+     * @type {any}
+     */
+    private connector = super.getConnector();
+
     /**
      * Run query.
      *
@@ -8,7 +17,7 @@ export class Builder {
      * @param handler
      */
     protected query(query: string, handler: any) {
-        db.query(query, handler);
+        this.connector.query(query, handler);
     }
 
     /**
